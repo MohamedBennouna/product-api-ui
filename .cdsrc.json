@@ -1,0 +1,17 @@
+{
+  "requires": {
+    "db": {
+      "kind": "sqlite",
+      "model": [
+        "db"
+      ],
+      "credentials": {
+        "database": "db.sqlite"
+      },
+      "sqlite": {
+        "journal_mode": "WAL",
+        "synchronous": "FULL"
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "product-api-ui",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "dependencies": {
+    "@sap/cds": "^9.5.1",
+    "express": "^4",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "@cap-js/cds-types": "^0.15.0",
+    "@cap-js/sqlite": "^2.1.0",
+    "chai": "^6.2.1",
+    "chai-as-promised": "^8.0.2",
+    "chai-subset": "^1.6.0",
+    "jest": "^30.2.0",
+    "supertest": "^7.1.4"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "deploy": "cds-deploy",
+    "test": "jest --runInBand"
+  },
+  "private": true
+}

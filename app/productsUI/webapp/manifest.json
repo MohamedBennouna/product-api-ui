@@ -1,0 +1,52 @@
+{
+  "sap.app": {
+    "id": "productsUI",
+    "type": "application",
+    "title": "Products UI",
+    "description": "SAPUI5 app to manage Products via OData V4",
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui5": {
+    "dependencies": {
+      "minUI5Version": "1.120.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ui.layout": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "": {
+        "type": "sap.ui.model.odata.v4.ODataModel",
+        "dataSource": "mainService",
+        "settings": {
+          "serviceUrl": "/odata/v4/",
+          "synchronizationMode": "None",
+          "autoExpandSelect": true,
+          "operationMode": "Server",
+          "groupId": "$auto"
+        }
+      },
+      "view": {
+        "type": "sap.ui.model.json.JSONModel"
+      }
+    },
+    "rootView": {
+      "viewName": "productsUI.view.Products",
+      "type": "XML",
+      "id": "productsView"
+    }
+  }
+}

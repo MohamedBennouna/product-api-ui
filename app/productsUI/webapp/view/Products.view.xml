@@ -1,0 +1,171 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  controllerName="productsUI.controller.Products"
+  displayBlock="true">
+  <Page id="productsPage" title="Products Management">
+    <content>
+      <VBox class="sapUiSmallMargin" width="100%">
+        <!-- Status Message -->
+        <MessageStrip 
+          text="{view>/status}" 
+          type="Information" 
+          visible="{= !!{view>/status}}" 
+          showCloseButton="true"/>
+
+        <!-- Create Product Section -->
+        <Panel headerText="Create Product" expandable="true" expanded="true">
+          <VBox class="sapUiSmallMargin">
+            <HBox class="sapUiSmallMargin">
+              <Input 
+                id="createName" 
+                placeholder="Product Name" 
+                value="{view>/createName}"
+                width="300px"/>
+              <Select 
+                id="createCategory" 
+                selectedKey="{view>/createCategory}"
+                width="150px"
+                class="sapUiTinyMarginBegin">
+                <core:Item key="drinks" text="Drinks"/>
+                <core:Item key="grocery" text="Grocery"/>
+              </Select>
+              <Button 
+                text="Create" 
+                type="Accept" 
+                press="onCreateProduct"
+                class="sapUiTinyMarginBegin"/>
+            </HBox>
+          </VBox>
+        </Panel>
+
+        <!-- Read Product Section -->
+        <Panel headerText="Read Product by ID" expandable="true" expanded="true">
+          <VBox class="sapUiSmallMargin">
+            <HBox class="sapUiSmallMargin">
+              <Input 
+                id="readIdInput" 
+                placeholder="Enter UUID" 
+                value="{view>/readId}"
+                width="300px"/>
+              <Button 
+                text="Load" 
+                type="Emphasized" 
+                press="onReadProduct"
+                class="sapUiTinyMarginBegin"/>
+            </HBox>
+            <Text text="Result: {view>/readResult}" class="sapUiTinyMarginTop"/>
+          </VBox>
+        </Panel>
+
+        <!-- Search and Filter Section -->
+        <Panel headerText="Search and Filter" expandable="true" expanded="true">
+          <VBox class="sapUiSmallMargin">
+            <HBox class="sapUiSmallMargin">
+              <SearchField 
+                placeholder="Search by name" 
+                value="{view>/search}" 
+                liveChange="onSearch"
+                width="300px"/>
+              <Select 
+                id="filterCategory" 
+                selectedKey="{view>/filterCategory}" 
+                change="onFilterChange"
+                width="150px"
+                class="sapUiTinyMarginBegin">
+                <core:Item key="all" text="All Categories"/>
+                <core:Item key="drinks" text="Drinks"/>
+                <core:Item key="grocery" text="Grocery"/>
+              </Select>
+              <Button 
+                icon="sap-icon://refresh" 
+                text="Refresh" 
+                press="onRefresh"
+                class="sapUiTinyMarginBegin"/>
+            </HBox>
+          </VBox>
+        </Panel>
+
+        <!-- Products Table -->
+        <Table
+          id="productsTable"
+          mode="SingleSelectMaster"
+          growing="true"
+          growingThreshold="20"
+          items="{/Products}"
+          selectionChange="onSelectionChange">
+          <headerToolbar>
+            <Toolbar>
+              <Title text="Products List"/>
+              <ToolbarSpacer/>
+              <Button icon="sap-icon://refresh" press="onRefresh"/>
+            </Toolbar>
+          </headerToolbar>
+          <columns>
+            <Column width="200px"><Text text="Name"/></Column>
+            <Column width="120px"><Text text="Category"/></Column>
+            <Column width="180px"><Text text="Created"/></Column>
+            <Column width="180px"><Text text="Updated"/></Column>
+            <Column width="150px"><Text text="Actions
+            "/></Column>
+          </columns>
+          <items>
+            <ColumnListItem>
+              <cells>
+                <Text text="{name}"/>
+                <Text text="{category}"/>
+                <Text text="{creation_date}"/>
+                <Text text="{updated_date}"/>
+                <HBox class="sapUiTinyMargin">
+                  <Button 
+                    text="Edit" 
+                    type="Ghost" 
+                    press="onEditProduct"
+                    width="60px"/>
+                  <Button 
+                    text="Delete" 
+                    type="Reject" 
+                    press="onDeleteProduct"
+                    width="70px"
+                    class="sapUiTinyMarginBegin"/>
+                </HBox>
+              </cells>
+            </ColumnListItem>
+          </items>
+        </Table>
+
+        <!-- Update Product Section -->
+        <Panel 
+          id="updatePanel"
+          headerText="Update Selected Product" 
+          expandable="true" 
+          expanded="false"
+          visible="{= !!{view>/selectedProduct}}">
+          <VBox class="sapUiSmallMargin">
+            <HBox class="sapUiSmallMargin">
+              <Input 
+                id="updateName" 
+                placeholder="New name" 
+                value="{view>/updateName}"
+                width="300px"/>
+              <Select 
+                id="updateCategory" 
+                selectedKey="{view>/updateCategory}"
+                width="150px"
+                class="sapUiTinyMarginBegin">
+                <core:Item key="drinks" text="Drinks"/>
+                <core:Item key="grocery" text="Grocery"/>
+              </Select>
+              <Button 
+                text="Update" 
+                type="Accept" 
+                press="onUpdateProduct"
+                class="sapUiTinyMarginBegin"/>
+            </HBox>
+          </VBox>
+        </Panel>
+      </VBox>
+    </content>
+  </Page>
+</mvc:View>
