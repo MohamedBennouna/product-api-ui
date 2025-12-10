@@ -29,8 +29,8 @@ module.exports = cds.service.impl(function () {
       return false;
     }
 
-    if (trimmedName.length > 100) {
-      req.error(400, "Product name must not exceed 100 characters");
+    if (trimmedName.length > 50) {
+      req.error(400, "Product name must not exceed 50 characters");
       return false;
     }
 

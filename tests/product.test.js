@@ -137,8 +137,8 @@ describe('ProductService (integration)', () => {
 		expect(res.status).toBe(400);
 	});
 
-	test('POST name exceeding 100 characters -> 400', async () => {
-		const longName = 'A'.repeat(101);
+	test('POST name exceeding 50 characters -> 400', async () => {
+		const longName = 'A'.repeat(51);
 		const res = await agent.post(`${SERVICE_PATH}/Products`).send({ name: longName, category: 'drinks' }).set('Accept', 'application/json');
 		expect(res.status).toBe(400);
 	});
